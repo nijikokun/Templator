@@ -13,7 +13,7 @@ Setup in HTML:
     <script src="Template/lib/jquery.js">/* Required */</script>
     <script src="Template/lib/estro.js">/* Required */</script>
     <script src="Template/lib/{language of choice goes here}.js">/* Required if utilizing 3rd party langauge */</script>
-    <script src="Template/Template.js">/* Required */</script>
+    <script src="Template/Templator.js">/* Required */</script>
 ```
 
 To initialize Templator, load it into a variable like so:
@@ -35,7 +35,7 @@ var Template = new Templator({
 });
 ```
 
-Basic Usage:
+# Basic Usage:
 
 ```javascript
 var Template = new Templator({ language: '' });
@@ -44,7 +44,9 @@ Template.renderRaw('Hello {name}!', { name: 'World' });
 
 That is about as simple as you can make it without utilizing any external templating libraries.
 
-Advanced Usage: (Utilizing Partials, Storage, 3rd Party Templating language, and Element control)
+# Advanced Usage: 
+
+Utilizing Partials, Storage, 3rd Party Templating language, and Element control
 
 ```javascript
 var Template = new Templator({ language: 'yajet' });
@@ -73,7 +75,8 @@ HTML used for this example:
 <div class="partial">Testing that </div>
 ```
 
-External File Usage:
+# External File Usage:
+
 ```javascript
 var Template = new Templator({ language: 'Moustache' })
    .store('main', 'templates/main.ms', { title: 'My Example - Home' })
