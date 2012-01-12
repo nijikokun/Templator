@@ -11,8 +11,7 @@ Setup in HTML:
 
 ```html
     <script src="Template/lib/jquery.js">/* Required */</script>
-    <script src="Template/lib/estro.js">/* Required */</script>
-    <script src="Template/lib/{language of choice goes here}.js">/* Required if utilizing 3rd party langauge */</script>
+    <script src="Template/lib/parsers/{language of choice goes here}.js">/* Required if utilizing 3rd party langauge */</script>
     <script src="Template/Templator.js">/* Required */</script>
 ```
 
@@ -26,7 +25,7 @@ All options for Templator, not all required:
 
 ```javascript
 var Template = new Templator({
-    language: 'jSmart', // Supported Languages: jSmart, EJS, Moustache, Trimpath, YAJET, JST, or Empty
+    language: 'jSmart', // Supported Languages: jSmart, EJS, Moustache, Trimpath, YAJET, JST, HAML, or Empty
     cache: {
         enabled: false,
         life: 32000,
@@ -97,7 +96,7 @@ Directory Setup:
 
 # Credits & Copyright
 
-To all templating languages that this supports. (jSmart, EJS, Moustache, Trimpath, YAJET, JST, TFTsl)
+To all templating languages that this supports. (jSmart, EJS, Moustache, Trimpath, YAJET, JST, TFTsl, HAML)
 
 AOL License <http://aol.nexua.org>
-Copyright 2011 - Nijikokun <nijikokun@gmail.com>
+Copyright 2011-2012 - Nijikokun <nijikokun@gmail.com>
