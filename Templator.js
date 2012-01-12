@@ -98,10 +98,7 @@ function Templator (settings) {
                     template = type != null ? $(data).html() : fetch(data)
                 ;
                 
-                if(params == null)
-                    params = {};
-                
-                my.templates[on].partials[i] = render(template, params, true);
+                my.templates[on].partials[i] = render(template, (params || {}), true);
             }
         }
         
@@ -154,10 +151,10 @@ function Templator (settings) {
                 
                 var name = i;
                 
-                if(name.startsWith('#') || name.startsWith('.'))
-                    name = name.pop();
+                if(!name.indexOf('#') || !name.indexOf('.'))
+                    name = name.slice(1, name.length);
                     
-                if(name.contains('/') && name.contains('.'))
+                if(name.indexOf('/') != -1 && name.indexOf('.') != -1)
                     name = url.split('/')[url.split('/').length].split(".")[0];
                     
                 params[name] = data.partials[i];
@@ -186,10 +183,7 @@ function Templator (settings) {
     //
     // Merge given settings with pre-existing settings.
     function init(settings) {
-        settings = settings ? settings : {};
-        
-        $.extend(true, my.settings, settings);
-        
+        $.extend(true, my.settings, (settings || {}));
         return my;
     }
     
@@ -197,7 +191,7 @@ function Templator (settings) {
     function fetch(resource, type /* Optional */) {
         var data = null;
         
-        if(type != null && type.equalsIgnoreCase("element"))
+        if(type != null && type.toLowerCase() == "element")
             return $(resource).html();
             
         $.ajax({
@@ -218,17 +212,21 @@ function Templator (settings) {
         var tpl, output;
         
         switch(my.settings.language.toLowerCase()) {
-            case 'moustache': case 'ms':
-                output = Mustache.to_html(raw, params);
+            case 'haml':
+                tpl = Haml(raw);
+                output = tpl(params);
             break;
-                
+            
             case 'jst': case 'jstparser':
                 output = Jst.evaluateSingleShot(raw, params);
             break;
                 
             case 'jsmart': case 'smarty': case 'sm':
-                tpl = new jSmart(raw);
-                output = tpl.fetch( params );
+                output = (new jSmart(raw)).fetch( params );
+            break;
+            
+            case 'moustache': case 'ms':
+                output = Mustache.to_html(raw, params);
             break;
                 
             case 'trimpath': case 'trim':
@@ -241,7 +239,13 @@ function Templator (settings) {
             break;
                 
             default:
-                function t(s,d){ for(var p in d) s=s.replace(new RegExp('{'+p+'}','g'), d[p]); return s; }
+                function t (s,d) { 
+                    for(var p in d) 
+                        s = s.replace(new RegExp('{'+p+'}','g'), d[p]); 
+                        
+                    return s; 
+                }
+                
                 output = t(raw, params);
         }
         
