@@ -4,8 +4,9 @@
   / /\/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \| '__|
  / / |  __/ | | | | | |_) | | (_| | || (_) | |   
  \/   \___|_| |_| |_| .__/|_|\__,_|\__\___/|_|.js
-                    |_| Take control of tmplating          
+                    |_| Take control of templating          
 ```
+
 
 Setup in HTML:
 
