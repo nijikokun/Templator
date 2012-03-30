@@ -1,4 +1,4 @@
-// Templator.js - Take control of tmplating.
+// Templator.js - Take control of templating.
 //
 // Take back control of javascript templating with Templator. Templator 
 // allows you load files, elements, and cache them if you want for later usage
